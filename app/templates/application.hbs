@@ -4,21 +4,26 @@
     <span class="flex"></span>
   {{/toolbar.tools}}
 {{/paper-toolbar}}
-
-<p> Is your favorite chef {{food}} cooking right now ? </p>
+Zmianiamy kolor
+{{input value=cos}}
+<p style="background-color:{{cos}}"> Is your favorite chef {{food}} cooking right now ? </p>
 
 <p> Find out with <b>Chef Tracker</b>, the hottest new chef-tracking app on the market. </p>
-
+<p> {{menuLength}} chefs total </p>
+<p> {{availableChefs.length}} available Chefs </p>
 <ul>
   {{#each model.chefs as |chef|}}
     {{#if chef.available}}
       <li class="available">
         Today, {{chef.name}} jest dostępny
         <button {{action "change" chef}}> Make unavailable </button>
+        <button {{action 'destroyChef' chef}}> Delete </button>
+
       </li>
     {{else}}
       <li class="not-available"><s> Today, {{chef.name}} nie jest dostępny </s>
         <button {{action "change" chef}}> Make available </button>
+        <button {{action 'destroyChef' chef}}> Delete </button>
       </li>
 
     {{/if}}
@@ -31,11 +36,12 @@ Podaj szefa{{input value=newChef }} <button {{action 'savenewChef'}}>Dodaj do ba
 
 
 
-<p> A robie chat na boku, najgorszy chat ever  {{message}} </p>
+<p> A robie chat na boku, najgorszy chat ever  </p>
 
 {{#each model.messages as |message|}}
-<p>
-{{message.content}}
-</p>
+
+{{message.content}}<button {{action 'deletemessage' message}}> Usun </button><br>
+
+
 {{/each}}
 {{input value=message enter="chat" }}
