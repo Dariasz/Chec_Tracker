@@ -1,0 +1,41 @@
+{{#paper-toolbar as |toolbar|}}
+  {{#toolbar.tools}}
+    <h1> Chef Tracker</h1>
+    <span class="flex"></span>
+  {{/toolbar.tools}}
+{{/paper-toolbar}}
+
+<p> Is your favorite chef {{food}} cooking right now ? </p>
+
+<p> Find out with <b>Chef Tracker</b>, the hottest new chef-tracking app on the market. </p>
+
+<ul>
+  {{#each model.chefs as |chef|}}
+    {{#if chef.available}}
+      <li class="available">
+        Today, {{chef.name}} jest dostępny
+        <button {{action "change" chef}}> Make unavailable </button>
+      </li>
+    {{else}}
+      <li class="not-available"><s> Today, {{chef.name}} nie jest dostępny </s>
+        <button {{action "change" chef}}> Make available </button>
+      </li>
+
+    {{/if}}
+
+  {{/each}}
+</ul>
+
+<h2>Dodajemy</h2>
+Podaj szefa{{input value=newChef }} <button {{action 'savenewChef'}}>Dodaj do bazy </button>
+
+
+
+<p> A robie chat na boku, najgorszy chat ever  {{message}} </p>
+
+{{#each model.messages as |message|}}
+<p>
+{{message.content}}
+</p>
+{{/each}}
+{{input value=message enter="chat" }}
