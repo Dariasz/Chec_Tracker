@@ -19,7 +19,9 @@ Zmianiamy kolor
         <button {{action "change" chef}}> Make unavailable </button>
         <button {{action 'destroyChef' chef}}> Delete </button>
 
+
       </li>
+      {{decremenet-icremenet-property model=chef property='student_number'}}
     {{else}}
       <li class="not-available"><s> Today, {{chef.name}} nie jest dostępny </s>
         <button {{action "change" chef}}> Make available </button>
